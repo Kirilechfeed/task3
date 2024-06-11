@@ -13,7 +13,7 @@ const layoutBoard = [
 </script>
 
 <template>
-  <div>
+  <div class="flex flex-col pt-[99px] pl-[26px]  h-full last:">
     <LayoutItem v-for="(item, indx) in layoutBoard" :key="indx" :item-board="item" />
   </div>
 </template>
