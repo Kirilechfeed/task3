@@ -12,7 +12,9 @@ import LayoutBoard from '@/components/LayoutBoard.vue'
       >
         <LayoutBoard />
       </div>
-      <div class=""></div>
+      <div class="w-full">
+        <RouterView />
+      </div>
     </div>
   </div>
 </template>
