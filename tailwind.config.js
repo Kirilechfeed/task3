@@ -3,6 +3,9 @@ export default {
   content: ['./index.html', './src/**/*.{vue,js,ts,jsx,tsx}'],
   theme: {
     extend: {
+      boxShadow: {
+        '3xl': '0px 0px 12px 4px #0000001A'
+      },
       colors: {
         mBlack: '#110E0E',
         mDarkBlue: '#262F40',
@@ -16,11 +19,9 @@ export default {
         gFromColor: '#fcfcfc',
         gMidleColor: '#f8f8f8',
         gToColor: '#f0f0f0',
-        
-        gButtonFrom:'#7DEBB8',
-        gButtonTo:'#61E199',
-        
 
+        gButtonFrom: '#7DEBB8',
+        gButtonTo: '#61E199'
       },
       fontFamily: {
         display: 'Montserrat' // Adds a new `font-display` class
