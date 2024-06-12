@@ -12,9 +12,15 @@ export default {
         mWhite: '#FCFCFC',
         mLime: '#2FDA7A',
         mLigthLime: '#D1FAEB',
+
         gFromColor: '#fcfcfc',
         gMidleColor: '#f8f8f8',
-        gToColor: '#f0f0f0'
+        gToColor: '#f0f0f0',
+        
+        gButtonFrom:'#7DEBB8',
+        gButtonTo:'#61E199',
+        
+
       },
       fontFamily: {
         display: 'Montserrat' // Adds a new `font-display` class
