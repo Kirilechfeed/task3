@@ -14,7 +14,8 @@ const urlImg = new URL(url, import.meta.url).href
 
 <template>
   <div class="bg-gMidleColor flex items-center h-[30%] border-t">
-    <div class="mr-[26px] w-[35%] flex justify-end">
+    <div class="flex items-center mx-auto">
+      <div class="mr-[26px]  flex justify-end">
       <img :src="urlImg" alt="" class="w-[25px] h-[25px]" />
     </div>
     <div class="w-[80px] flex justify-center">
@@ -24,6 +25,7 @@ const urlImg = new URL(url, import.meta.url).href
         >
         <span class="font-light text-[13px] text-mDarkGrey">{{ title }}</span>
       </div>
+    </div>
     </div>
   </div>
 </template>

@@ -9,3 +9,10 @@ export interface IItemProduct {
   wholesalePrice?: number
   profit?: number
 }
+
+export interface ITopItem{
+  img: string
+  name: string
+  ratinf:  number
+  price:number
+}
