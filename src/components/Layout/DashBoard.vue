@@ -13,16 +13,15 @@ let profit = ref(Number(route.query.amount))
 let countProduct = ref(0)
 const products = ref([])
 const topProducts = ref([
-  {img: 'product2.png', name: 'Product Name - Choose Name', rating: 5, price: 90},
-  {img: 'product2.png', name: 'Product Name - Choose Name', rating: 5, price: 90},
-  {img: 'product2.png', name: 'Product Name - Choose Name', rating: 5, price: 90},
-  {img: 'product2.png', name: 'Product Name - Choose Name', rating: 5, price: 90},
-  {img: 'product2.png', name: 'Product Name - Choose Name', rating: 5, price: 90},
-  {img: 'product2.png', name: 'Product Name - Choose Name', rating: 5, price: 90},
-  {img: 'product2.png', name: 'Product Name - Choose Name', rating: 5, price: 90},
-  {img: 'product2.png', name: 'Product Name - Choose Name', rating: 5, price: 90},
+  { img: 'product2.png', name: 'Product Name - Choose Name', rating: 5, price: 90 },
+  { img: 'product2.png', name: 'Product Name - Choose Name', rating: 5, price: 90 },
+  { img: 'product2.png', name: 'Product Name - Choose Name', rating: 5, price: 90 },
+  { img: 'product2.png', name: 'Product Name - Choose Name', rating: 5, price: 90 },
+  { img: 'product2.png', name: 'Product Name - Choose Name', rating: 5, price: 90 },
+  { img: 'product2.png', name: 'Product Name - Choose Name', rating: 5, price: 90 },
+  { img: 'product2.png', name: 'Product Name - Choose Name', rating: 5, price: 90 },
+  { img: 'product2.png', name: 'Product Name - Choose Name', rating: 5, price: 90 }
 ])
-
 
 function getRandomNumber() {
   const randomNum = Math.random() * 100
@@ -137,66 +136,82 @@ function recalculationPrice() {
           <div class="flex justify-between items-center">
             <h2 class="text-xs font-semibold mt-3 mb-2 pl-2">Monthly Growth</h2>
             <div class="flex items-center space-x-4">
-              <div class="font-light text-[12px] cursor-pointer  bg-[#F0F0F0] py-2 px-5 text-mDarkGrey underline underline-offset-4 decoration-mLigthGrey">April - June</div>
-              <div><img src="@/assets/menu.svg" alt="" class="mr-4 cursor-pointer"></div>
+              <div
+                class="font-light text-[12px] cursor-pointer bg-[#F0F0F0] py-2 px-5 text-mDarkGrey underline underline-offset-4 decoration-mLigthGrey"
+              >
+                April - June
+              </div>
+              <div><img src="@/assets/menu.svg" alt="" class="mr-4 cursor-pointer" /></div>
             </div>
           </div>
-          <div class="p-2 border-t bt-mDarkGrey flex h-full  pb-[40px] ">
-            <div class=" border-r mt-5 flex flex-col w-[50%]">
-              <div class="h-[50%] border-b">
-                <AboutCrowth :label="'Current Month'"/>
+          <div class="p-2 border-t bt-mDarkGrey flex h-full pb-[40px]">
+            <div class="border-r mt-5 flex flex-col w-[50%]">
+              <div class="h-[50%] border-b flex justify-center">
+                <AboutCrowth :label="'Current Month'" />
               </div>
-              <div class="h-[50%]">
-                <AboutCrowth :label="'Quarterly'"/>
+              <div class="h-[50%] flex justify-center">
+                <AboutCrowth :label="'Quarterly'" />
               </div>
             </div>
-           <div class="w-[50%] flex justify-center relative items-center">
-            <div class="z-50  w-[120px] absolute z-50 top-0 right-0 flex ">
-              <div class="flex items-center mr-3"><span class="h-[16px] w-[16px] rounded bg-mDarkBlue"></span><span class="font-light text-[10px] ml-1">Goal</span></div>
-              <div class="flex items-center"><span class="h-[16px] w-[16px] rounded bg-mLime "></span><span class="font-light text-[10px] ml-1">Growth</span></div>
-
-            </div>
-            <div class="relative h-[70%] w-60">
-             
-              <div class="absolute w-full h-full z-10">
+            <div class="w-[50%] flex justify-center relative items-center">
+              <div class="z-50 w-[120px] absolute z-50 top-0 right-0 flex">
+                <div class="flex items-center mr-3">
+                  <span class="h-[16px] w-[16px] rounded bg-mDarkBlue"></span
+                  ><span class="font-light text-[10px] ml-1">Goal</span>
+                </div>
+                <div class="flex items-center">
+                  <span class="h-[16px] w-[16px] rounded bg-mLime"></span
+                  ><span class="font-light text-[10px] ml-1">Growth</span>
+                </div>
+              </div>
+              <div class="relative h-[70%] w-full pl-[50px] mr-[70px]">
+                <div class="absolute w-full h-full z-10">
                   <div class="border-t absolute w-full bottom-[0%] z-1">
-                      <span class="absolute left-[-40px] top-[-10px] text-xs text-gray-700">0%</span>
+                    <span class="absolute left-[-40px] top-[-10px] text-xs text-gray-700">0%</span>
                   </div>
-                  <div class="border-t  absolute w-full bottom-[20%] " >
-                      <span class="absolute left-[-40px] top-[-10px] text-xs text-gray-700">20%</span>
+                  <div class="border-t absolute w-full bottom-[20%]">
+                    <span class="absolute left-[-40px] top-[-10px] text-xs text-gray-700">20%</span>
                   </div>
-                  <div class="border-t  absolute w-full bottom-[40%] ">
-                      <span class="absolute left-[-40px] top-[-10px] text-xs text-gray-700">40%</span>
+                  <div class="border-t absolute w-full bottom-[40%]">
+                    <span class="absolute left-[-40px] top-[-10px] text-xs text-gray-700">40%</span>
                   </div>
-                  <div class="border-t  absolute w-full bottom-[60%] ">
-                      <span class="absolute left-[-40px] top-[-10px] text-xs text-gray-700">60%</span>
+                  <div class="border-t absolute w-full bottom-[60%]">
+                    <span class="absolute left-[-40px] top-[-10px] text-xs text-gray-700">60%</span>
                   </div>
-                  <div class="border-t  absolute w-full bottom-[80%] ">
-                      <span class="absolute left-[-40px] top-[-10px] text-xs text-gray-700">80%</span>
+                  <div class="border-t absolute w-full bottom-[80%]">
+                    <span class="absolute left-[-40px] top-[-10px] text-xs text-gray-700">80%</span>
                   </div>
-                  <div class="border-t absolute w-full bottom-[100%] ">
-                      <span class="absolute left-[-40px] top-[-10px] text-xs text-gray-700">100%</span>
+                  <div class="border-t absolute w-full bottom-[100%]">
+                    <span class="absolute left-[-40px] top-[-10px] text-xs text-gray-700"
+                      >100%</span
+                    >
                   </div>
+                </div>
+                <div class="flex justify-between items-end mt-[20px] h-full relative z-50">
+                  <div class="flex flex-col items-center">
+                    <div
+                      class="bg-gradient-to-r from-gButtonFrom to-gButtonTo w-5 h-[105px] rounded-tl-3xl rounded-tr-3xl"
+                    ></div>
+                    <div class="bg-mDarkBlue w-5 h-[45px]"></div>
+                    <span class="mt-2 text-sm text-gray-700">April</span>
+                  </div>
+                  <div class="flex flex-col items-center">
+                    <div
+                      class="bg-gradient-to-r from-gButtonFrom to-gButtonTo w-5 h-[85px] rounded-tl-3xl rounded-tr-3xl"
+                    ></div>
+                    <div class="bg-mDarkBlue w-5 h-[55px]"></div>
+                    <span class="mt-2 text-sm text-gray-700">May</span>
+                  </div>
+                  <div class="flex flex-col items-center">
+                    <div
+                      class="bg-gradient-to-r from-gButtonFrom to-gButtonTo w-5 h-[115px] rounded-tl-3xl rounded-tr-3xl"
+                    ></div>
+                    <div class="bg-mDarkBlue w-5 h-[45px]"></div>
+                    <span class="mt-2 text-sm text-gray-700">June</span>
+                  </div>
+                </div>
               </div>
-              <div class="flex justify-between items-end mt-[20px] h-full relative z-50">
-                  <div class="flex flex-col items-center ">
-                      <div class="bg-gradient-to-r from-gButtonFrom to-gButtonTo w-5 h-[105px] rounded-tl-3xl rounded-tr-3xl"></div>
-                      <div class="bg-mDarkBlue w-5 h-[45px]"></div>
-                      <span class="mt-2 text-sm text-gray-700">April</span>
-                  </div>
-                  <div class="flex flex-col items-center">
-                      <div class="bg-gradient-to-r from-gButtonFrom to-gButtonTo w-5 h-[85px] rounded-tl-3xl rounded-tr-3xl"></div>
-                      <div class="bg-mDarkBlue w-5 h-[55px]"></div>
-                      <span class="mt-2 text-sm text-gray-700">May</span>
-                  </div>
-                  <div class="flex flex-col items-center">
-                      <div class="bg-gradient-to-r from-gButtonFrom to-gButtonTo w-5 h-[115px]  rounded-tl-3xl rounded-tr-3xl"></div>
-                      <div class="bg-mDarkBlue w-5 h-[45px]"></div>
-                      <span class="mt-2 text-sm text-gray-700">June</span>
-                  </div>
-               </div>
             </div>
-           </div>
           </div>
         </div>
       </div>
@@ -207,8 +222,14 @@ function recalculationPrice() {
             <p class="text-[8px] text-[#999999] mr-2">View All</p>
           </div>
           <div class="p-2 border-t bt-mDarkGrey h-full flex flex-col items-center pb-[40px]">
-            <div class=" overflow-y-auto w-full h-full scrollbar overflow-y-scroll">
-                <TopProducts v-for="(topItem, index) in topProducts" :key="index" :topItem="topItem"/>
+            <div
+              class="overflow-y-auto w-full h-full scrollbar overflow-y-scroll no-scrollbar-arrows"
+            >
+              <TopProducts
+                v-for="(topItem, index) in topProducts"
+                :key="index"
+                :topItem="topItem"
+              />
             </div>
           </div>
         </div>

@@ -22,12 +22,13 @@ export default {
 
         gButtonFrom: '#7DEBB8',
         gButtonTo: '#61E199',
-        'scrollbar-thumb': '#808080',  // bg-gray-900
-        'scrollbar-thumb-hover': '#808080',  // bg-gray-700
-        'scrollbar-track': '#808080',  // bg-gray-300
+
+        'scrollbar-thumb': '#808080',
+        'scrollbar-thumb-hover': '#808080',
+        'scrollbar-track': '#808080'
       },
       fontFamily: {
-        display: 'Montserrat' // Adds a new `font-display` class
+        display: 'Montserrat'
       },
       width: {
         464: '464px',
@@ -40,29 +41,19 @@ export default {
       const newUtilities = {
         '.scrollbar': {
           'scrollbar-width': 'thin',
-          'scrollbar-color': '#808080 #E6E6E6',
+          'scrollbar-color': '#808080 #E6E6E6'
         },
         '.scrollbar::-webkit-scrollbar': {
-          'width': '8px',
-          'height': '8px',
-          'border-radius': '3px',
+          width: '8px',
+          height: '8px',
+          'border-radius': '3px'
         },
-        '.scrollbar::-webkit-scrollbar-thumb': {
-          'background-color': '#1F2937',
-          'border-radius': '9999px',
-        },
-        '.scrollbar::-webkit-scrollbar-thumb:hover': {
-          'background-color': '#4B5563',
-        },
-        '.scrollbar::-webkit-scrollbar-track': {
-          'background-color': '#D1D5DB',
-        },
-        '.scrollbar::-webkit-scrollbar-button': {
-          'display': 'none',
-        },
-      };
+        '.no-scrollbar-arrows::-webkit-scrollbar-button': {
+          display: 'none'
+        }
+      }
 
-      addUtilities(newUtilities, ['responsive', 'hover']);
+      addUtilities(newUtilities, ['responsive', 'hover'])
     }
   ]
 }

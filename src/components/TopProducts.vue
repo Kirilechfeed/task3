@@ -19,7 +19,7 @@ const urlImg = new URL(url, import.meta.url).href
         <span class="font-medium text-[10px]">{{ props.topItem.name }}</span>
       </div>
       <div class="h-4 flex items-center">
-        <span class="font-medium text-[10px]">{{ props.topItem.rating }}</span>
+        <img src="@/assets/reting.svg" alt="" />
       </div>
       <div class="h-4 flex items-center">
         <span class="font-medium text-[10px]">${{ props.topItem.price }}</span>
