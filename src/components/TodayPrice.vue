@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { ref, watch, computed } from 'vue';
 interface Props {
   img: string
   price: number
@@ -9,6 +10,37 @@ const props = defineProps<Props>()
 
 const url = `../../../src/assets/today/${props.img}`
 const urlImg = new URL(url, import.meta.url).href
+
+const currentCount = ref(props.price);
+
+const formattedCount = computed(() => {
+  return currentCount.value.toLocaleString('en-US');
+});
+
+watch(
+  () => props.price,
+  (newCount) => {
+    const startValue = currentCount.value;
+    const endValue = newCount;
+    const duration = 1000; 
+    const frameDuration = 1000 / 60;
+    const totalFrames = duration / frameDuration;
+    let frame = 0;
+
+    function animate() {
+      frame++;
+      const progress = frame / totalFrames;
+      currentCount.value = Math.round(startValue + (endValue - startValue) * progress);
+      if (frame < totalFrames) {
+        requestAnimationFrame(animate);
+      }
+    }
+
+    animate();
+  },
+  { immediate: true }
+);
+
 </script>
 
 <template>
@@ -20,7 +52,7 @@ const urlImg = new URL(url, import.meta.url).href
       <div class="w-[80px] flex justify-center">
         <div class="flex flex-col text-center">
           <span class="text-xl font-bold text-mLime"
-            >${{ props.price % 1 === 0 ? props.price.toString() : props.price.toFixed(2) }}</span
+            >${{ formattedCount  }}</span
           >
           <span class="font-light text-[13px] text-mDarkGrey">{{ title }}</span>
         </div>

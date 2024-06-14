@@ -1,5 +1,10 @@
 <script setup lang="ts">
-import { ITopItem } from '@/src/models/main.ts'
+
+export interface ITopItem{
+  img: string
+  name: string
+  price:number
+}
 
 interface Props {
   topItem: ITopItem

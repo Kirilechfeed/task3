@@ -1,17 +1,28 @@
 <script setup lang="ts">
 import { useRoute } from 'vue-router'
 import { ref } from 'vue'
+
 import TodayPrice from '@/components/TodayPrice.vue'
 import ItemProduct from '@/components/ItemProduct.vue'
 import AboutCrowth from '@/components/AboutCrowth.vue'
 import TopProducts from '@/components/TopProducts.vue'
+
+interface IItemProduct {
+  img: string;
+  name: string;
+  marketPrice: number;
+  newlyAdded: boolean,
+  wholesalePrice?: number;
+  profit?: number;
+}
 
 const route = useRoute()
 let revenue = ref(1500)
 let costs = ref(6000)
 let profit = ref(Number(route.query.amount))
 let countProduct = ref(0)
-const products = ref([])
+
+const products = ref<IItemProduct[]>([]);
 const topProducts = ref([
   { img: 'product2.png', name: 'Product Name - Choose Name', rating: 5, price: 90 },
   { img: 'product2.png', name: 'Product Name - Choose Name', rating: 5, price: 90 },
@@ -31,22 +42,23 @@ function getRandomNumber() {
 
 function recalculationPrice() {
   revenue.value += products.value[0].marketPrice
-  costs.value += products.value[0].wholesalePrice
-  profit.value += products.value[0].marketPrice - products.value[0].wholesalePrice
+  costs.value += products.value[0].wholesalePrice ?? 0
+  profit.value += products.value[0].marketPrice - (products.value[0].wholesalePrice ?? 0)
 }
 
-// setInterval(() => {
-//   const newItem = {
-//     img: 'imgProduct.png',
-//     name: 'Product Name - Choose Name',
-//     marketPrice: getRandomNumber()
-//   }
-//   newItem.wholesalePrice = Number(((newItem.marketPrice / 100) * 60).toFixed(2))
-//   newItem.profit = Number((newItem.marketPrice - newItem.wholesalePrice).toFixed(2))
-//   products.value.unshift(newItem)
-//   countProduct.value = products.value.length
-//   recalculationPrice()
-// }, 3000)
+setInterval(() => {
+  const newItem: IItemProduct = {
+    img: 'imgProduct.png',
+    newlyAdded: true,
+    name: 'Product Name - Choose Name',
+    marketPrice: getRandomNumber()
+  }
+  newItem.wholesalePrice = Number(((newItem.marketPrice / 100) * 60).toFixed(2))
+  newItem.profit = Number((newItem.marketPrice - newItem.wholesalePrice).toFixed(2))
+  products.value.unshift(newItem)
+  countProduct.value = products.value.length
+  recalculationPrice()
+}, 3000)
 </script>
 
 <template>
@@ -56,7 +68,7 @@ function recalculationPrice() {
       <div class="shadow-3xl rounded bg-gMidleColor w-[20%]">
         <h2 class="text-xs font-semibold mt-3 mb-2 pl-2">Today’s Metrics</h2>
         <div class="h-full">
-          <TodayPrice :img="'1.svg'" :title="'Revenue'" :price="revenue" :class="'pt-6'" />
+          <TodayPrice :img="'1.svg'" :title="'Revenue'" :price="revenue"  :class="'pt-6'" />
           <TodayPrice :img="'2.svg'" :title="'Costs'" :price="costs" />
           <TodayPrice :img="'3.svg'" :title="'Profit'" :price="profit" />
         </div>
@@ -79,11 +91,14 @@ function recalculationPrice() {
               <h3 class="text-[10px] text-mDarkGrey w-28 text-center">Profit</h3>
             </div>
           </div>
-          <div class="max-h-full">
-            <div v-for="(itemProduct, index) in products" :key="index">
-              <ItemProduct :item-product="itemProduct" />
+          <transition-group>
+            <div class="max-h-full">
+             <div v-for="(itemProduct, index) in products" :key="index" class="transition-show" :class="{'translate-y-[-100%] opacity-0 bg-mLime':itemProduct.newlyAdded}" 
+               @transitionend="itemProduct.newlyAdded = false">
+               <ItemProduct :item-product="itemProduct" />
+             </div>
             </div>
-          </div>
+          </transition-group>
         </div>
       </div>
       <div class="shadow-3xl rounded w-[20%] bg-gMidleColor">

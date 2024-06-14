@@ -1,5 +1,13 @@
 <script setup lang="ts">
-import { IItemProduct } from '@/src/models/main.ts'
+
+interface IItemProduct {
+  img: string;
+  name: string;
+  marketPrice: number;
+  newlyAdded: boolean,
+  wholesalePrice?: number;
+  profit?: number;
+}
 
 interface Props {
   itemProduct: IItemProduct
@@ -10,7 +18,7 @@ const urlImg = new URL(url, import.meta.url).href
 </script>
 
 <template>
-  <div class="flex mt-3.5 items-center justify-between">
+  <div class="flex mt-3.5 items-center justify-between ">
     <div class="flex items-center w-80">
       <img :src="urlImg" alt="" class="pr-5" />
       <div>

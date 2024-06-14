@@ -3,6 +3,9 @@ export default {
   content: ['./index.html', './src/**/*.{vue,js,ts,jsx,tsx}'],
   theme: {
     extend: {
+      transitionProperty: {
+        'show': 'transform 0.5s ease-in-out, opacity 0.5s ease-in-out',
+      },
       boxShadow: {
         '3xl': '0px 0px 12px 4px #0000001A'
       },
