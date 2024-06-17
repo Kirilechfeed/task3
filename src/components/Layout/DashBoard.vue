@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { useRoute } from 'vue-router'
 import { ref } from 'vue'
+import { v4 as uuidv4 } from 'uuid'
 
 import TodayPrice from '@/components/TodayPrice.vue'
 import ItemProduct from '@/components/ItemProduct.vue'
@@ -8,12 +9,13 @@ import AboutCrowth from '@/components/AboutCrowth.vue'
 import TopProducts from '@/components/TopProducts.vue'
 
 interface IItemProduct {
-  img: string;
-  name: string;
-  marketPrice: number;
-  newlyAdded: boolean,
-  wholesalePrice?: number;
-  profit?: number;
+  id: string
+  img: string
+  name: string
+  marketPrice: number
+  newlyAdded: boolean
+  wholesalePrice?: number
+  profit?: number
 }
 
 const route = useRoute()
@@ -22,7 +24,7 @@ let costs = ref(6000)
 let profit = ref(Number(route.query.amount))
 let countProduct = ref(0)
 
-const products = ref<IItemProduct[]>([]);
+const products = ref<IItemProduct[]>([])
 const topProducts = ref([
   { img: 'product2.png', name: 'Product Name - Choose Name', rating: 5, price: 90 },
   { img: 'product2.png', name: 'Product Name - Choose Name', rating: 5, price: 90 },
@@ -48,6 +50,7 @@ function recalculationPrice() {
 
 setInterval(() => {
   const newItem: IItemProduct = {
+    id: uuidv4(),
     img: 'imgProduct.png',
     newlyAdded: true,
     name: 'Product Name - Choose Name',
@@ -68,7 +71,7 @@ setInterval(() => {
       <div class="shadow-3xl rounded bg-gMidleColor w-[20%]">
         <h2 class="text-xs font-semibold mt-3 mb-2 pl-2">Today’s Metrics</h2>
         <div class="h-full">
-          <TodayPrice :img="'1.svg'" :title="'Revenue'" :price="revenue"  :class="'pt-6'" />
+          <TodayPrice :img="'1.svg'" :title="'Revenue'" :price="revenue" :class="'pt-6'" />
           <TodayPrice :img="'2.svg'" :title="'Costs'" :price="costs" />
           <TodayPrice :img="'3.svg'" :title="'Profit'" :price="profit" />
         </div>
@@ -91,12 +94,14 @@ setInterval(() => {
               <h3 class="text-[10px] text-mDarkGrey w-28 text-center">Profit</h3>
             </div>
           </div>
-          <transition-group>
-            <div class="max-h-full">
-             <div v-for="(itemProduct, index) in products" :key="index" class="transition-show" :class="{'translate-y-[-100%] opacity-0 bg-mLime':itemProduct.newlyAdded}" 
-               @transitionend="itemProduct.newlyAdded = false">
-               <ItemProduct :item-product="itemProduct" />
-             </div>
+          <transition-group name="list" tag="div" class="max-h-full">
+            <div
+              v-for="itemProduct in products"
+              :key="itemProduct.id"
+              class="transition-transform transition-opacity duration-500 ease-in-out"
+              @transitionend="itemProduct.newlyAdded = false"
+            >
+              <ItemProduct :item-product="itemProduct" />
             </div>
           </transition-group>
         </div>
@@ -252,3 +257,34 @@ setInterval(() => {
     </div>
   </div>
 </template>
+
+<style scoped>
+.list-enter-active,
+.list-leave-active {
+  transition: all 0.5s ease;
+}
+.list-enter-from {
+  transform: translateY(-20px);
+  opacity: 0;
+  border-radius: 0;
+  background-color: rgb(47 218 122);
+}
+.list-enter-to {
+  transform: translateY(0);
+  opacity: 1;
+  border-radius: 20px;
+  background-color: white;
+}
+.list-leave-from {
+  transform: translateY(0);
+  opacity: 1;
+  border-radius: 20px;
+  background-color: white;
+}
+.list-leave-to {
+  transform: translateY(-20px);
+  opacity: 0;
+  border-radius: 0;
+  background-color: rgb(47 218 122);
+}
+</style>

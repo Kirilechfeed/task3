@@ -1,8 +1,7 @@
 <script setup lang="ts">
-import { IItemBoard } from '@/src/models/main.ts'
-// import { Router } from 'vue-router'
+
 interface Props {
-  itemBoard: IItemBoard
+  itemBoard: any
 }
 const props = defineProps<Props>()
 
